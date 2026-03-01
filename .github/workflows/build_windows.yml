@@ -11,14 +11,7 @@ jobs:
         with:
           python-version: '3.10'
       - run: pip install opencv-python mediapipe scipy numpy sounddevice pyinstaller
-      - run: |
-          pyinstaller --onefile ^
-            --hidden-import mediapipe.tasks.c ^
-            --hidden-import mediapipe.tasks.python ^
-            --hidden-import mediapipe.tasks.python.vision ^
-            --collect-all mediapipe ^
-            --collect-all cv2 ^
-            main.py
+      - run: pyinstaller --onefile --hidden-import mediapipe.tasks.c --hidden-import mediapipe.tasks.python --hidden-import mediapipe.tasks.python.vision --collect-all mediapipe --collect-all cv2 main.py
       - uses: actions/upload-artifact@v4
         with:
           name: drowsiness_detector_windows
